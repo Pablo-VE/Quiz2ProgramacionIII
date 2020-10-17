@@ -54,7 +54,13 @@ public class ProductoPrecioServiceImplementation implements IProductoPrecioServi
     @Override
     @Transactional
     public Optional<ProductoPrecioDTO> update(ProductoPrecioDTO productoPrecio, Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(productoPrecioRepository.findById(id).isPresent()){
+            ProductoPrecio entidad = MapperUtils.EntityFromDto(productoPrecio, ProductoPrecio.class);
+            entidad = productoPrecioRepository.save(entidad);
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(entidad, ProductoPrecioDTO.class));
+        }else{
+            return null;
+        }
     }
     
 }

@@ -55,7 +55,13 @@ public class ClienteServiceImplementation implements IClienteService{
 
     @Override
     public Optional<ClienteDTO> update(ClienteDTO cliente, Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(clienteRepository.findById(id).isPresent()){
+            Cliente entidad = MapperUtils.EntityFromDto(cliente, Cliente.class);
+            entidad = clienteRepository.save(entidad);
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(entidad, ClienteDTO.class));
+        }else{
+            return null;
+        }
     }
 
 

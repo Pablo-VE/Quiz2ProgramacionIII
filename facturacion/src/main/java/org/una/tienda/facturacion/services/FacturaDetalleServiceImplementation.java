@@ -56,7 +56,13 @@ public class FacturaDetalleServiceImplementation implements IFacturaDetalleServi
     @Override
     @Transactional
     public Optional<FacturaDetalleDTO> update(FacturaDetalleDTO facturaDetalle, Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(facturaDetalleRepository.findById(id).isPresent()){
+            FacturaDetalle entidad = MapperUtils.EntityFromDto(facturaDetalle, FacturaDetalle.class);
+            entidad = facturaDetalleRepository.save(entidad);
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(entidad, FacturaDetalleDTO.class));
+        }else{
+            return null;
+        }
     }
     
 }
