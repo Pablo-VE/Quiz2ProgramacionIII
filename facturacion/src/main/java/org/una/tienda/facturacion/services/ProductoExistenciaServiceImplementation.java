@@ -6,8 +6,12 @@
 package org.una.tienda.facturacion.services;
 
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.una.tienda.facturacion.dto.ProductoExistenciaDTO;
+import org.una.tienda.facturacion.entities.ProductoExistencia;
+import org.una.tienda.facturacion.repositories.IProductoExistenciaRepository;
+import org.una.tienda.facturacion.utils.MapperUtils;
 
 /**
  *
@@ -15,18 +19,37 @@ import org.una.tienda.facturacion.dto.ProductoExistenciaDTO;
  */
 public class ProductoExistenciaServiceImplementation implements IProductoExistenciaService{
 
+    @Autowired
+    private IProductoExistenciaRepository productoExistenciaRepository;
+    
+     private Optional<ProductoExistenciaDTO> oneToDto(Optional<ProductoExistencia> one) {
+        if (one.isPresent()) {
+            ProductoExistenciaDTO ProductoExistenciaDTO = MapperUtils.DtoFromEntity(one.get(), ProductoExistenciaDTO.class);
+            return Optional.ofNullable(ProductoExistenciaDTO);
+        } else {
+            return null;
+        }
+    }
     @Override
     @Transactional(readOnly = true)
     public Optional<ProductoExistenciaDTO> findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return oneToDto(productoExistenciaRepository.findById(id));
     }
 
     @Override
     @Transactional
-    public ProductoExistenciaDTO create(ProductoExistenciaDTO productoExistencia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ProductoExistenciaDTO create(ProductoExistenciaDTO ProductoExistenciaDTO) {
+        ProductoExistencia productoExistencia = MapperUtils.EntityFromDto(ProductoExistenciaDTO, ProductoExistencia.class);
+        productoExistencia = productoExistenciaRepository.save(productoExistencia);
+        return MapperUtils.DtoFromEntity(productoExistencia, ProductoExistenciaDTO.class);
     }
 
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        productoExistenciaRepository.deleteById(id);
+    }
+    
     @Override
     @Transactional
     public Optional<ProductoExistenciaDTO> update(ProductoExistenciaDTO productoExistencia, Long id) {
