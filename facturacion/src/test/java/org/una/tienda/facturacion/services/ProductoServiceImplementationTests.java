@@ -53,10 +53,26 @@ public class ProductoServiceImplementationTests {
     }
     @Test
     public void sePuedeModificarUnProductoCorrectamente() {
-        //productoEjemplo = productoService.update(productoEjemplo, productoEjemplo.getId());
+        productoEjemplo = productoService.create(productoEjemplo);
+        productoService.update(productoEjemplo, productoEjemplo.getId());
+        Optional<ProductoDTO>productoEncontrado = productoService.findById(productoEjemplo.getId());
+        if (productoEncontrado.isPresent()) {
+            ProductoDTO producto = productoEncontrado.get();
+            assertEquals(productoEjemplo.getId(), producto.getId());
+        } else {
+            fail("No se encontro la información en la BD");
+        } 
     }
     @Test
     public void sePuedeEliminarUnProductoCorrectamente() {
+        productoEjemplo = productoService.create(productoEjemplo);
+        productoService.delete(productoEjemplo.getId());
+        Optional<ProductoDTO>productoEncontrado = productoService.findById(productoEjemplo.getId());
+        if (productoEncontrado == null) {
+            productoEjemplo = null;
+        } else {
+            fail("No se ha eliminado");
+        } 
         
     }
     @AfterEach

@@ -13,6 +13,7 @@ import org.una.tienda.facturacion.dto.ProductoDTO;
 import org.una.tienda.facturacion.entities.Producto;
 import org.una.tienda.facturacion.repositories.IProductoRepository;
 import org.una.tienda.facturacion.utils.MapperUtils;
+import org.una.tienda.facturacion.repositories.IProductoRepository;
 
 /**
  *
@@ -53,8 +54,14 @@ public class ProductoServiceImplementation implements IProductoService{
 
     @Override
     public Optional<ProductoDTO> update(ProductoDTO producto, Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-}
+        if (productoRepository.findById(id).isPresent()) {
+            Producto prodRep = MapperUtils.EntityFromDto(producto, Producto.class);
+            prodRep = productoRepository.save(prodRep);
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(prodRep, ProductoDTO.class));
+        } else {
+            return null;
+        } 
+    }
 
  
 }
