@@ -35,18 +35,18 @@ import lombok.ToString;
  * @author Pablo-VE
  */
 @Entity
-@Table(name = "ut_productos_existencias")
+@Table(name = "ut_productos")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ProductoExistencia implements Serializable{
+public class Producto implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column
-    private double cantidad;
+    @Column(length = 100)
+    private String descripcion;
     
     @Column
     private boolean estado;
@@ -61,6 +61,9 @@ public class ProductoExistencia implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
     
+    @Column
+    private double impuesto;
+    
     @PrePersist
     public void prePersist() {
         estado=true;
@@ -73,7 +76,6 @@ public class ProductoExistencia implements Serializable{
         fechaModificacion = new Date();
     }
     
-    @ManyToOne 
-    @JoinColumn(name="producto")
-    private Producto producto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto") 
+    private List<ProductoExistencia> productosExistencias= new ArrayList<>();
 }
