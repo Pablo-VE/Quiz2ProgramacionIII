@@ -49,9 +49,16 @@ public class ProductoServiceImplementationTests {
 
         } else {
             fail("No se encontro la información en la BD");
-        }
+        } 
     }
-
+    @Test
+    public void sePuedeModificarUnProductoCorrectamente() {
+        //productoEjemplo = productoService.update(productoEjemplo, productoEjemplo.getId());
+    }
+    @Test
+    public void sePuedeEliminarUnProductoCorrectamente() {
+        
+    }
     @AfterEach
     public void tearDown() {
         if (productoEjemplo != null) {
