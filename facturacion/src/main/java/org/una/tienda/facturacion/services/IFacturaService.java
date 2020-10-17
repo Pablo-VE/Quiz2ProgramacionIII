@@ -16,4 +16,6 @@ public interface IFacturaService {
     public FacturaDTO create(FacturaDTO factura);
 
     public Optional<FacturaDTO> update(FacturaDTO factura, Long id);
+
+    public void delete(Long id);
 }

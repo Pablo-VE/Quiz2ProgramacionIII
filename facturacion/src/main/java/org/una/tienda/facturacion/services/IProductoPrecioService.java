@@ -16,4 +16,6 @@ public interface IProductoPrecioService {
     public ProductoPrecioDTO create(ProductoPrecioDTO productoPrecio);
 
     public Optional<ProductoPrecioDTO> update(ProductoPrecioDTO productoPrecio, Long id);
+    
+    public void delete(Long id);
 }
