@@ -29,24 +29,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 /**
  *
  * @author Pablo-VE
  */
 @Entity
-@Table(name = "ut_productos_existencias")
+@Table(name = "ut_productos_precios")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ProductoExistencia implements Serializable{
+public class ProductoPrecio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column
-    private double cantidad;
+    @Column(name="descuento_maximo")
+    private double descuentoMaximo;
+    
+    @Column(name="descuento_promocional")
+    private double descuentoPromocional;
     
     @Column
     private boolean estado;
@@ -61,6 +63,13 @@ public class ProductoExistencia implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
     
+    @Column(name="precio_colones")
+    private double precioColones;
+    
+    @ManyToOne 
+    @JoinColumn(name="productos_id")
+    private Producto producto;
+    
     @PrePersist
     public void prePersist() {
         estado=true;
@@ -72,8 +81,4 @@ public class ProductoExistencia implements Serializable{
     public void preUpdate() {
         fechaModificacion = new Date();
     }
-    
-    @ManyToOne 
-    @JoinColumn(name="productos_id")
-    private Producto producto;
 }

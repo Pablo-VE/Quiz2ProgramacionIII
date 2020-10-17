@@ -78,4 +78,10 @@ public class Producto implements Serializable{
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto") 
     private List<ProductoExistencia> productosExistencias= new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto") 
+    private List<ProductoPrecio> productoPrecio= new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto") 
+    private List<FacturaDetalle> facturasDetalles= new ArrayList<>();
 }

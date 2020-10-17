@@ -6,7 +6,10 @@
 package org.una.tienda.facturacion.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -45,8 +49,8 @@ public class Factura implements Serializable{
     @Column
     private int caja;
     
-    @Column
-    private double descuento_general;
+    @Column(name="descuento_general")
+    private double descuentoGeneral;
     
     @Column
     private boolean estado;
@@ -74,4 +78,11 @@ public class Factura implements Serializable{
     public void preUpdate() {
         fechaModificacion = new Date();
     }
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura") 
+    private List<FacturaDetalle> facturasDetalles= new ArrayList<>();
+    
+    @ManyToOne 
+    @JoinColumn(name="cliente_id")
+    private Cliente cliente;
 }
