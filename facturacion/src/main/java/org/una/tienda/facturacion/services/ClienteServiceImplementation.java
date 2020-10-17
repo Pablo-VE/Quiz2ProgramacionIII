@@ -8,7 +8,7 @@ package org.una.tienda.facturacion.services;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.una.tienda.facturacion.entities.Cliente;
+import org.una.tienda.facturacion.dto.ClienteDTO;
 
 /**
  *
@@ -19,20 +19,21 @@ public class ClienteServiceImplementation implements IClienteService{
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Cliente> findById(Long id) {
+    public Optional<ClienteDTO> findById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     @Transactional
-    public Cliente create(Cliente cliente) {
+    public ClienteDTO create(ClienteDTO cliente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     @Transactional
-    public Optional<Cliente> update(Cliente cliente, Long id) {
+    public Optional<ClienteDTO> update(ClienteDTO cliente, Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }

@@ -8,7 +8,7 @@ package org.una.tienda.facturacion.services;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.una.tienda.facturacion.entities.FacturaDetalle;
+import org.una.tienda.facturacion.dto.FacturaDetalleDTO;
 
 /**
  *
@@ -19,19 +19,19 @@ public class FacturaDetalleServiceImplementation implements IFacturaDetalleServi
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<FacturaDetalle> findById(Long id) {
+    public Optional<FacturaDetalleDTO> findById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     @Transactional
-    public FacturaDetalle create(FacturaDetalle facturaDetalle) {
+    public FacturaDetalleDTO create(FacturaDetalleDTO facturaDetalle) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     @Transactional
-    public Optional<FacturaDetalle> update(FacturaDetalle facturaDetalle, Long id) {
+    public Optional<FacturaDetalleDTO> update(FacturaDetalleDTO facturaDetalle, Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

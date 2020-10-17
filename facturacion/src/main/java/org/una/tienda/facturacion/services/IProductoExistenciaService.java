@@ -5,15 +5,15 @@
  */
 package org.una.tienda.facturacion.services;
 import java.util.Optional;
-import org.una.tienda.facturacion.entities.ProductoExistencia;
+import org.una.tienda.facturacion.dto.ProductoExistenciaDTO;
 /**
  *
  * @author Jeffry
  */
 public interface IProductoExistenciaService {
-    public Optional<ProductoExistencia> findById(Long id);
+    public Optional<ProductoExistenciaDTO> findById(Long id);
 
-    public ProductoExistencia create(ProductoExistencia ProductoExistencia);
+    public ProductoExistenciaDTO create(ProductoExistenciaDTO ProductoExistencia);
 
-    public Optional<ProductoExistencia> update(ProductoExistencia productoExistencia, Long id);
+    public Optional<ProductoExistenciaDTO> update(ProductoExistenciaDTO productoExistencia, Long id);
 }

@@ -7,7 +7,7 @@ package org.una.tienda.facturacion.services;
 
 import java.util.Optional;
 import org.springframework.transaction.annotation.Transactional;
-import org.una.tienda.facturacion.entities.ProductoPrecio;
+import org.una.tienda.facturacion.dto.ProductoPrecioDTO;
 
 /**
  *
@@ -17,19 +17,19 @@ public class ProductoPrecioServiceImplementation implements IProductoPrecioServi
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<ProductoPrecio> findById(Long id) {
+    public Optional<ProductoPrecioDTO> findById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     @Transactional
-    public ProductoPrecio create(ProductoPrecio productoPrecio) {
+    public ProductoPrecioDTO create(ProductoPrecioDTO productoPrecio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     @Transactional
-    public Optional<ProductoPrecio> update(ProductoPrecio productoPrecio, Long id) {
+    public Optional<ProductoPrecioDTO> update(ProductoPrecioDTO productoPrecio, Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
