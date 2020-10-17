@@ -14,6 +14,8 @@ public interface IProductoService {
     public Optional<ProductoDTO> findById(Long id);
 
     public ProductoDTO create(ProductoDTO producto);
+    
+    public void delete(Long id);
 
     public Optional<ProductoDTO> update(ProductoDTO producto, Long id);
 }
