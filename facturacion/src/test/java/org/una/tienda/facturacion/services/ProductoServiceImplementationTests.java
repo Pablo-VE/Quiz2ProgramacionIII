@@ -7,6 +7,7 @@ package org.una.tienda.facturacion.services;
 
 import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,8 +55,13 @@ public class ProductoServiceImplementationTests {
     @Test
     public void sePuedeModificarUnProductoCorrectamente() {
         productoEjemplo = productoService.create(productoEjemplo);
-        productoService.update(productoEjemplo, productoEjemplo.getId());
+        
         Optional<ProductoDTO>productoEncontrado = productoService.findById(productoEjemplo.getId());
+        
+        productoService.update(productoEjemplo, productoEjemplo.getId());
+        
+        
+        
         if (productoEncontrado.isPresent()) {
             ProductoDTO producto = productoEncontrado.get();
             assertEquals(productoEjemplo.getId(), producto.getId());
@@ -66,13 +72,15 @@ public class ProductoServiceImplementationTests {
     @Test
     public void sePuedeEliminarUnProductoCorrectamente() {
         productoEjemplo = productoService.create(productoEjemplo);
-        productoService.delete(productoEjemplo.getId());
-        Optional<ProductoDTO>productoEncontrado = productoService.findById(productoEjemplo.getId());
-        if (productoEncontrado == null) {
-            productoEjemplo = null;
-        } else {
+        
+        Optional<ProductoDTO>productoEncontrado = productoService.delete(productoEjemplo.getId());
+        
+        if (productoEncontrado.isPresent()) {
+            ProductoDTO producto = productoEncontrado.get();
+            assertEquals(productoEjemplo.getId(), producto.getId());
+        }else{
             fail("No se ha eliminado");
-        } 
+        }
         
     }
     @AfterEach

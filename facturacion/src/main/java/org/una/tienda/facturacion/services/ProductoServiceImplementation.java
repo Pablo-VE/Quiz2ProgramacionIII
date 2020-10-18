@@ -49,8 +49,9 @@ public class ProductoServiceImplementation implements IProductoService{
 
     @Override
     @Transactional
-    public void delete(Long id) {
-        productoRepository.deleteById(id);
+    public Optional<ProductoDTO> delete(Long id) {
+        //productoRepository.deleteById(id);
+        return oneToDto(productoRepository.findById(id));
     }
 
     @Override
