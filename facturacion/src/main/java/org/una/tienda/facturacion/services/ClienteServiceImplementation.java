@@ -36,7 +36,6 @@ public class ClienteServiceImplementation implements IClienteService{
     @Transactional(readOnly = true)
     public Optional<ClienteDTO> findById(Long id) {
         return oneToDto(clienteRepository.findById(id));
-
     }
 
     @Override
@@ -47,10 +46,10 @@ public class ClienteServiceImplementation implements IClienteService{
         return MapperUtils.DtoFromEntity(cliente, ClienteDTO.class);
     }
 
-   @Override
-    @Transactional
-    public void delete(Long id) {
-        clienteRepository.deleteById(id);
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<ClienteDTO> delete(Long id) {
+        return oneToDto(clienteRepository.findById(id));
     }
 
     @Override

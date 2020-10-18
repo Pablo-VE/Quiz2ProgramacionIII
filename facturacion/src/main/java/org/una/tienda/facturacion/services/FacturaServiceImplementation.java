@@ -47,12 +47,13 @@ public class FacturaServiceImplementation implements IFacturaService{
         return MapperUtils.DtoFromEntity(factura, FacturaDTO.class);
     }
 
+
     @Override
-    @Transactional
-    public void delete(Long id) {
-        facturaRepository.deleteById(id);
+    @Transactional(readOnly = true)
+    public Optional<FacturaDTO> delete(Long id) {
+        return oneToDto(facturaRepository.findById(id));
+
     }
-    
     
     @Override
     @Transactional

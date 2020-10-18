@@ -7,6 +7,7 @@ package org.una.tienda.facturacion.services;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.una.tienda.facturacion.dto.ProductoExistenciaDTO;
 import org.una.tienda.facturacion.entities.ProductoExistencia;
@@ -17,6 +18,7 @@ import org.una.tienda.facturacion.utils.MapperUtils;
  *
  * @author Jeffry
  */
+@Service
 public class ProductoExistenciaServiceImplementation implements IProductoExistenciaService{
 
     @Autowired
@@ -45,9 +47,9 @@ public class ProductoExistenciaServiceImplementation implements IProductoExisten
     }
 
     @Override
-    @Transactional
-    public void delete(Long id) {
-        productoExistenciaRepository.deleteById(id);
+    @Transactional(readOnly = true)
+    public Optional<ProductoExistenciaDTO> delete(Long id) {
+        return oneToDto(productoExistenciaRepository.findById(id));
     }
     
     @Override

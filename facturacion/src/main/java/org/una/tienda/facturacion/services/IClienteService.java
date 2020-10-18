@@ -18,5 +18,5 @@ public interface IClienteService {
 
     public Optional<ClienteDTO> update(ClienteDTO cliente, Long id);
     
-    public void delete(Long id);
+    public Optional<ClienteDTO> delete(Long id);
 }

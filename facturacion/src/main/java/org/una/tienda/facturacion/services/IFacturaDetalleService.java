@@ -17,5 +17,5 @@ public interface IFacturaDetalleService {
 
     public Optional<FacturaDetalleDTO> update(FacturaDetalleDTO facturaDetalle, Long id);
 
-    public void delete(Long id);
+    public Optional<FacturaDetalleDTO> delete(Long id);
 }

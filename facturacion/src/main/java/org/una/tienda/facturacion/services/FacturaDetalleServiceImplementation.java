@@ -48,9 +48,10 @@ public class FacturaDetalleServiceImplementation implements IFacturaDetalleServi
     }
 
     @Override
-    @Transactional
-    public void delete(Long id) {
-        facturaDetalleRepository.deleteById(id);
+    @Transactional(readOnly = true)
+    public Optional<FacturaDetalleDTO> delete(Long id) {
+        return oneToDto(facturaDetalleRepository.findById(id));
+
     }
 
     @Override
